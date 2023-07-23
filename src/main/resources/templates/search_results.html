@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <ul>
+        <li th:each="t: ${searchResultList}">
+            [[${t.comment}]] -- [[${t.name}]] on [[${t.createdAt}]]
+        </li>
+    </ul>
+    <h2>Main page</h2>
+    <a th:href="@{/read}">Return</a>
+</body>
+</html>

@@ -33,4 +33,18 @@ public class TsubuyakiService {
         found.forEach(list::add);
         return list;
     }
+
+    public List<Tsubuyaki> findTsubuyaki(String keyword) {
+        Iterable<Tsubuyaki> found = repo.findAll();
+        ArrayList<Tsubuyaki> list = new ArrayList<>();
+        System.out.println("Kaikki: " + found);
+        System.out.println("keyword: " + keyword);
+        found.forEach(tsubuyaki -> {
+            if (tsubuyaki.getComment().equals(keyword)) {
+                list.add(tsubuyaki);
+            }
+        });
+        System.out.println("Loppulista: " + list);
+        return list;
+    }
 }

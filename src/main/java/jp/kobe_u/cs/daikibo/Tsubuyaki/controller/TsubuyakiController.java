@@ -24,13 +24,26 @@ public class TsubuyakiController {
         return "index";
     }
 
+    @ModelAttribute("searchForm")
+    public SearchForm getSearchForm() {
+        return new SearchForm();
+    }
+
     // メイン画面を表示
     @GetMapping("/read")
     String showTsubuyakiList(Model model) {
         List<Tsubuyaki> list = ts.getAllTsubuyaki(); // 全つぶやきを取得
         model.addAttribute("tsubuyakiList", list); // モデル属性にリストをセット
         model.addAttribute("tsubuyakiForm", new TsubuyakiForm()); // 空フォームをセット
-        return "tsubuyaki_list"; // リスト画面を返す
+        return "tsubuyaki_list";
+    }
+
+    @PostMapping("/search")
+    String showSearchList(@ModelAttribute("searchForm") SearchForm form, Model model) {
+        System.out.println("keyword: " + form.getKeyword());
+        List<Tsubuyaki> list = ts.findTsubuyaki(form.getKeyword());
+        model.addAttribute("searchResultList", list);
+        return "search_results";
     }
 
     // つぶやきを投稿

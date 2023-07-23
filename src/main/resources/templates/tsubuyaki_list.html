@@ -19,6 +19,17 @@
         <input type="text" required th:field="*{comment}" />
         <input type="submit" value="つぶやく" />
     </form>
+    <!-- <form th:action="@{/search}" th:object="${searchForm}" method="get">
+        <label for="comment">Keyword:</label>
+        <input type="text" name="comment" size="8" />
+        <input type="submit" value="Search" />
+    </form> -->
+    <h2>Search</h2>
+    <form th:action="@{/search}" th:object="${searchForm}" method="post">
+        <label for="keyword">Keyword:</label>
+        <input type="text" th:field="*{keyword}" />
+        <input type="submit" value="Search" />
+    </form>
     <h2>タイトルへ</h2>
     <a th:href="@{/}">戻る</a>
 </body>
